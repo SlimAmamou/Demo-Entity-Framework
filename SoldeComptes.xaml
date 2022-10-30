@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfBanqueProjet.SoldeComptes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBanqueProjet"
+        mc:Ignorable="d"
+        Title="Mes Comptes" Height="450" Width="500">
+    <Grid>
+        <Label x:Name="txtSoldAcceuil" HorizontalAlignment="Left" Margin="145,22,0,0" VerticalAlignment="Top" Height="60" Width="200" FontSize="20"
+               Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <ListView HorizontalAlignment="Left" Height="285" Margin="82,100,0,0" VerticalAlignment="Top" Width="350" x:Name="lstcomptes" IsSynchronizedWithCurrentItem="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="N°compte" Width="100" DisplayMemberBinding="{Binding IDCompte}"/>
+                    <GridViewColumn Header="Type" Width="130" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Montant" Width="120" DisplayMemberBinding="{Binding Montant}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

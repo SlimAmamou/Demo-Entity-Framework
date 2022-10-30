@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfBanqueProjet.EspaceClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBanqueProjet"
+        mc:Ignorable="d"
+        Title="Espace Client" Height="500" Width="600">
+    <Grid>
+        <Label HorizontalAlignment="Left"  Height="102" Margin="120,45,0,0"  x:Name="txtAcceuil" VerticalAlignment="Top" Width="370" FontSize="22" 
+               Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <Label Content="Dépôt :" HorizontalAlignment="Left" Height="41" Margin="120,181,0,0" VerticalAlignment="Top" Width="368" FontSize="18" Background="#FFF6F6FB" Foreground="#FF3F3AB8"/>
+        <Label Content="Retrait :" HorizontalAlignment="Left" Height="41" Margin="120,227,0,0" VerticalAlignment="Top" Width="368" FontSize="18" Background="#FFF6F6FB" Foreground="#FF3F3AB8"/>
+        <Label Content="Transfert :" HorizontalAlignment="Left" Height="41" Margin="120,273,0,0" VerticalAlignment="Top" Width="368" FontSize="18" Background="#FFF6F6FB" Foreground="#FF3F3AB8"/>
+        <Label Content="Payer facture :" HorizontalAlignment="Left" Height="41" Margin="120,319,0,0" VerticalAlignment="Top" Width="368" FontSize="18" Background="#FFF6F6FB" Foreground="#FF3F3AB8"/>
+        <Button  HorizontalAlignment="Left" Margin="434,181,0,0" VerticalAlignment="Top" Width="40" Height="40"  Background="#FF3F3AB8" 
+                 x:Name="BtnDepot" Click="BtnDepot_Click"/>
+        <Button  HorizontalAlignment="Left" Margin="434,227,0,0" VerticalAlignment="Top" Width="40" Height="40" Background="#FF3F3AB8"
+                 x:Name="BtnRetrait" Click="BtnRetrait_Click"/>
+        <Button  HorizontalAlignment="Left" Margin="434,273,0,0" VerticalAlignment="Top" Width="40" Height="40" Background="#FF3F3AB8"
+                 x:Name="BtnTransfert" Click="BtnTransfert_Click"/>
+        <Button  HorizontalAlignment="Left" Margin="434,319,0,0" VerticalAlignment="Top" Width="40" Height="40" Background="#FF3F3AB8" 
+                 x:Name="BtnFacture" Click="BtnFacture_Click"/>
+        <Button Content="Mes comptes" HorizontalAlignment="Left" Margin="120,405,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnComptes"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FF3F3AB8" Click="BtnComptes_Click" />
+        <Button Content="Deconnecter" HorizontalAlignment="Left" Margin="364,405,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnQuit"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FFE0529F" BorderBrush="#FFE0529F" Click="BtnQuit_Click" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bank_dbModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="IDClient" />
+    </Key>
+    <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="Int64" Nullable="false" />
+    <Property Name="Courriel" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nip" Type="Int32" Nullable="false" />
+    <Property Name="Acces" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="comptes" Relationship="Self.FK_comptes_clients" FromRole="clients" ToRole="comptes" />
+  </EntityType>
+  <EntityType Name="compte">
+    <Key>
+      <PropertyRef Name="IDCompte" />
+    </Key>
+    <Property Name="IDCompte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDClient" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Montant" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="Self.FK_comptes_clients" FromRole="comptes" ToRole="clients" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_comptes" FromRole="comptes" ToRole="Transactions" />
+    <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transactions_comptes1" FromRole="comptes" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="codeTransaction" />
+    </Key>
+    <Property Name="codeTransaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="compteFrom" Type="Int32" Nullable="false" />
+    <Property Name="compteTo" Type="Int32" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="montant" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="compte" Relationship="Self.FK_Transactions_comptes" FromRole="Transactions" ToRole="comptes" />
+    <NavigationProperty Name="compte1" Relationship="Self.FK_Transactions_comptes1" FromRole="Transactions" ToRole="comptes" />
+  </EntityType>
+  <EntityType Name="TypeCompte">
+    <Key>
+      <PropertyRef Name="idType" />
+    </Key>
+    <Property Name="idType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_comptes_clients">
+    <End Role="clients" Type="Self.client" Multiplicity="1" />
+    <End Role="comptes" Type="Self.compte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="comptes">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_comptes">
+    <End Role="comptes" Type="Self.compte" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comptes">
+        <PropertyRef Name="IDCompte" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="compteFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_comptes1">
+    <End Role="comptes" Type="Self.compte" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comptes">
+        <PropertyRef Name="IDCompte" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="compteTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bank_dbEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.client" />
+    <EntitySet Name="comptes" EntityType="Self.compte" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="TypeComptes" EntityType="Self.TypeCompte" />
+    <AssociationSet Name="FK_comptes_clients" Association="Self.FK_comptes_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="comptes" EntitySet="comptes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_comptes" Association="Self.FK_Transactions_comptes">
+      <End Role="comptes" EntitySet="comptes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_comptes1" Association="Self.FK_Transactions_comptes1">
+      <End Role="comptes" EntitySet="comptes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

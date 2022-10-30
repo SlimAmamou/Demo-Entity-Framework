@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bank_dbModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="IDClient" />
+    </Key>
+    <Property Name="IDClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Prenom" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Telephone" Type="bigint" Nullable="false" />
+    <Property Name="Courriel" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Nip" Type="int" Nullable="false" />
+    <Property Name="Acces" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comptes">
+    <Key>
+      <PropertyRef Name="IDCompte" />
+    </Key>
+    <Property Name="IDCompte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDClient" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Montant" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="codeTransaction" />
+    </Key>
+    <Property Name="codeTransaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typeTransaction" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="compteFrom" Type="int" Nullable="false" />
+    <Property Name="compteTo" Type="int" />
+    <Property Name="date" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="montant" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeCompte">
+    <Key>
+      <PropertyRef Name="idType" />
+    </Key>
+    <Property Name="idType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_comptes_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="comptes" Type="Self.comptes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="comptes">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_comptes">
+    <End Role="comptes" Type="Self.comptes" Multiplicity="1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comptes">
+        <PropertyRef Name="IDCompte" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="compteFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_comptes1">
+    <End Role="comptes" Type="Self.comptes" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comptes">
+        <PropertyRef Name="IDCompte" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="compteTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bank_dbModel1StoreContainer">
+    <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comptes" EntityType="Self.comptes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeCompte" EntityType="Self.TypeCompte" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_comptes_clients" Association="Self.FK_comptes_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="comptes" EntitySet="comptes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_comptes" Association="Self.FK_Transactions_comptes">
+      <End Role="comptes" EntitySet="comptes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_comptes1" Association="Self.FK_Transactions_comptes1">
+      <End Role="comptes" EntitySet="comptes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

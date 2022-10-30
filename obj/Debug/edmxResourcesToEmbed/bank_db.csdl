@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bank_dbModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="IDClient" />
+    </Key>
+    <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="Int64" Nullable="false" />
+    <Property Name="Courriel" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nip" Type="Int32" Nullable="false" />
+    <Property Name="Acces" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="comptes" Relationship="Self.FK_comptes_clients" FromRole="clients" ToRole="comptes" />
+  </EntityType>
+  <EntityType Name="comptes">
+    <Key>
+      <PropertyRef Name="IDCompte" />
+    </Key>
+    <Property Name="IDCompte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDClient" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Montant" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="clients" Relationship="Self.FK_comptes_clients" FromRole="comptes" ToRole="clients" />
+  </EntityType>
+  <EntityType Name="TypeCompte">
+    <Key>
+      <PropertyRef Name="idType" />
+    </Key>
+    <Property Name="idType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_comptes_clients">
+    <End Role="clients" Type="Self.clients" Multiplicity="1" />
+    <End Role="comptes" Type="Self.comptes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="comptes">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="banque_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.clients" />
+    <EntitySet Name="comptes" EntityType="Self.comptes" />
+    <EntitySet Name="TypeCompte" EntityType="Self.TypeCompte" />
+    <AssociationSet Name="FK_comptes_clients" Association="Self.FK_comptes_clients">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="comptes" EntitySet="comptes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfBanqueProjet.TransfertFonds"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBanqueProjet"
+        mc:Ignorable="d"
+        Title="Transfert De Fonds" Height="300" Width="550">
+    <Grid>
+        <Label Content="      De:                                                          À:" HorizontalAlignment="Left" Margin="60,45,0,0" 
+               VerticalAlignment="Top" Height="31" Width="380" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <ComboBox HorizontalAlignment="Left" Margin="110,48,0,0" VerticalAlignment="Top" Width="120" Height="25" FontSize="14" x:Name="BoxFrom" SelectionChanged="BoxFrom_SelectionChanged"/>
+        <ComboBox HorizontalAlignment="Left" Margin="310,48,0,0" VerticalAlignment="Top" Width="120" Height="25" FontSize="14" x:Name="BoxTo" SelectionChanged="BoxTo_SelectionChanged"/>
+        <Label Content="      Montant:" HorizontalAlignment="Left" Margin="60,115,0,0" 
+               VerticalAlignment="Top" Height="31" Width="380" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <TextBox HorizontalAlignment="Left"  Margin="150,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80" Height="25"
+                FontSize="14" BorderBrush="#FF3F3AB8" x:Name="txtMontant" TextChanged="txtMontant_TextChanged"/>
+        <Button Content="Transferer" HorizontalAlignment="Left" Margin="310,118,0,0" VerticalAlignment="Top" Width="120" Background="#FFB5DFF0" Foreground="#FF3F3AB8" 
+                BorderBrush="#FF3F3AB8" FontSize="14" Height="25" x:Name="BtnTransfert" IsEnabled="False" Click="BtnTransfert_Click"/>
+        <Button Content="Mes comptes" HorizontalAlignment="Left" Margin="85,194,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnComptes"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FF3F3AB8" Click="BtnComptes_Click"/>
+        <Button Content="Quitter" HorizontalAlignment="Left" Margin="315,194,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnQuit"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FFE0529F" BorderBrush="#FFE0529F" Click="BtnQuit_Click"/>
+    </Grid>
+</Window>

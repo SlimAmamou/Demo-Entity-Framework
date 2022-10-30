@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfBanqueProjet.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBanqueProjet"
+        mc:Ignorable="d"
+        Title="Login To my bank" Height="300" Width="800">
+    <Grid>
+        <Image Source="/bank_.png" Margin="486,5,4,5"/>
+        <Label Content="Login To My Bank" HorizontalAlignment="Left" Margin="145,27,0,0" VerticalAlignment="Top" Height="42" Width="190"  FontSize="22" 
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FF3F3AB8" BorderThickness="1"/>
+        <Label Content="Identifiant(Courriel):" HorizontalAlignment="Left" Height="41" Margin="39,89,0,0" VerticalAlignment="Top" Width="154" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <Label Content="NIP(4 chiffres):" HorizontalAlignment="Left" Height="41" Margin="39,143,0,0" VerticalAlignment="Top" Width="154" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Height="41" Margin="215,89,0,0" TextWrapping="Wrap" x:Name="txtuser" VerticalAlignment="Top" Width="220"  FontSize="16"  VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Height="41" Margin="215,143,0,0" VerticalAlignment="Top" Width="80" FontSize="16"  VerticalContentAlignment="Center" PasswordChanged="txtPassword_Changed"/>
+        <Button Content="LOGIN" HorizontalAlignment="Left" Height="32" Margin="145,208,0,0" VerticalAlignment="Top" Width="74" Foreground="#FF3F3AB8" 
+                BorderBrush="#FF3F3AB8" BorderThickness="0.6" IsEnabled="False" x:Name="btnLogin" Click="btnLogin_Click" FontWeight="Bold" FontSize="14"/>
+        <Button Content="Quitter" HorizontalAlignment="Left" Height="32" Margin="270,208,0,0" VerticalAlignment="Top" Width="74" Foreground="#FF3F3AB8" 
+                BorderBrush="#FF3F3AB8" BorderThickness="0.6" x:Name="btnQuit" Click="btnQuit_Click" FontWeight="Bold" FontSize="14"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfBanqueProjet.DepotCash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBanqueProjet"
+        mc:Ignorable="d"
+        Title="Dépôt Liquide" Height="325" Width="550">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="260,45,0,0" VerticalAlignment="Top" Width="176" Height="34" x:Name="BoxDepot" FontSize="18" SelectionChanged="BoxDepot_SelectionChanged"/>
+        <Label Content="Selection compte:" HorizontalAlignment="Left" Height="34" Margin="75,45,0,0" VerticalAlignment="Top" Width="180" FontSize="18" 
+               Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <Label Content="Montant du dépôt:" HorizontalAlignment="Left" Height="34" Margin="75,95,0,0" VerticalAlignment="Top" Width="180" FontSize="18" 
+               Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FFF6F6FB"/>
+        <TextBox HorizontalAlignment="Left" Height="34" Margin="260,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" 
+                 FontSize="18" x:Name="txtDepot" Background="#FFF6F6FB" BorderBrush="#FF3F3AB8" TextChanged="TxtDepot_TextChanged"/>
+        <Button Content="Déposer" HorizontalAlignment="Left" Margin="260,145,0,0" VerticalAlignment="Top" Width="176" Height="34" FontSize="18"
+                Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FF3F3AB8" x:Name="BtnDepot" Click="BtnDepot_Click" IsEnabled="False"/>
+        <Button Content="Mes comptes" HorizontalAlignment="Left" Margin="85,232,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnComptes"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FF3F3AB8" BorderBrush="#FF3F3AB8" Click="BtnComptes_Click" />
+        <Button Content="Quitter" HorizontalAlignment="Left" Margin="315,232,0,0" VerticalAlignment="Top" Width="120" Height="30" x:Name="BtnQuit"
+                FontSize="16" Background="#FFF6F6FB" Foreground="#FFE0529F" BorderBrush="#FFE0529F" Click="BtnQuit_Click"/>
+
+    </Grid>
+</Window>
